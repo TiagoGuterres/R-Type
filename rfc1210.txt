@@ -1,0 +1,141 @@
+Epitech Lille                                                           E. Engels
+Request for Comments: 1210                                            L. Mariette
+Category: Best Current Practive                             T. Guterres-Rodrigues
+                                                                     D. Birembaut
+                                                                          Epitech
+                                                                     Octobre 2023
+
+                                R-type Protocol
+
+Status of this Memo
+
+    This memo is the official specification of the R-Type Protocol
+    (the R-Type UDP Protocol). The R-Type is a third year project from EPITECH.
+    Distribution of this memo is unlimited.
+
+Table of Contents
+
+    1. Introduction.............................................................1
+    2. R-Type architecture......................................................2
+    3. R-Type UDP protocol......................................................3
+    4. Server connection .......................................................4
+    5. Client connection .......................................................5
+    6. Game start ..............................................................6
+    7. Frames transmission .....................................................7
+    8. Player events ...........................................................8
+
+1. Introduction
+
+    The goal of the R-Type project is to create an online multiplayer
+    copy of the classic R-Type game (1987).
+    
+    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+    "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this
+    document are to be interpreted as described in RFC 2119.
+
+2. R-Type architecture
+
+    The R-Type architecture is a classic client-server game architecture.
+    All the game engine is in the server. A client connects to the server
+    by using the R-Type TCP protocol. When connected, the client has the
+    choice between creating a lobby or joining an existing lobby.
+    Multiple clients can connect to the server at the same time. Then, a
+    lobby's creator client can launch a new game. The server can run
+    several games at the same time.
+
+Engels, et al.                  Best Current Practice                    [Page 1]
+
+RFC 1210                        R-Type UDP Protocol                  Octobre 2023
+
+
+3. R-Type UDP protocol
+
+    The R-Type UDP protocol is used to transmit the game frames from the
+    server to the clients. The server sends the frames to all the clients
+    connected to the game. The clients receive the frames and display them
+    to the player. The server sends the frames at a constant rate of 60
+    frames per second. The server sends the frames to the clients using
+    the UDP protocol. The server sends the frames to the clients using the
+    UDP prot
+
+4. Server connection
+
+    The server MUST notify each client when a monster spawns, moves,
+    is destroyed, fires, kills a player, and so on. . . , as well as notifies
+    others clients’ actions (a player moves, shoots, etc.).
+    The server MUST be multithreaded, or at least, MUST NOT block or wait for
+    clients messages, as the game must run frame after frame on the server
+    regardless of clients’ actions! If a client crashes for any reason,
+    the server MUST continue to work and MUST notify other clients
+    in the same game that a client crashed. More generally, the server must be
+    robust and be able to run regardless of what’s wrong might happen.
+    You will use the SFML library to create the server with the Network module.
+
+5. Client connection 
+
+    The client is the graphical display of the game.
+    It MUST contain anything necessary to display the game and handle player
+    input, while everything related to gameplay logic shall occur on the server.
+    The client MAY nevertheless run parts of the game logic code, such as local
+    player movement or missile movements, but in any case the server MUST have
+    authority on what happens in the end. This is particularly true for any kind
+    of effect that have a great impact on gameplay (death of an enemy/player,
+    pickup of an item, etc.): all players have to play the same game, whose
+    rules are driven by the server. You may use the SFML for
+    rendering/audio/input/network, but other libraries can be used
+    (such as SDL or Raylib for example). However, libraries with a too broad
+    scope, or existing game engines (UE, Unity, Godot,etc.) are strictly
+    forbidden.
+
+Engels, et al.                  Best Current Practice                    [Page 2]
+
+RFC 1210                        R-Type UDP Protocol                  Octobre 2023
+
+6. Game start
+
+    The client MUST display a slow horizontal scrolling background
+    representing space with stars, planets. . . This is the star-field.
+    The star-field scrolling, entities behavior, and overall time flow must
+    NOT be tied to the CPU speed. Instead, you MUST use timers. Players MUST
+    be able to move using the arrow keys. There MUST be Bydos slaves in your
+    game, as well as missiles. Monsters MUST be able to spawn randomly on
+    the right of the screen. The four players in a game MUST be distinctly
+    identifiable (via color, sprite, etc.). R-Type sprites are freely
+    available on the Internet, but a set of sprites is available with
+    this subject.
+
+7. Frames transmission
+
+    The first purpose of the R-Type UDP Protocol is to send all the
+    frames to display (in the client) from the server to the
+    client. The payload to send MUST contain all the elements to display in a
+    single frame, grouped in a SPRITE_LIST. A SPRITE_LIST is a succession of
+    SPRITE. A SPRITE is a succession of 7 numbers representing a sprite to
+    display and its position. Each one of these numbers MUST be coded
+    on 4 bytes. Thus, a SPRITE MUST be 28 bytes long, and a
+    SPRITE_LIST of (n) SPRITE MUST be (n * 28) bytes long.
+    The order of the SPRITE elements in SPRITE_LIST MUST be the final
+    order of displaying (in the game, every SPRITE will be displayed over
+    the previous ones).
+
+    The client MUST NOT respond to the server when a payload has been
+    received.
+
+8. Player events
+
+    The second purpose of the R-Type UDP Protocol is to send the
+    player events from the client to the server. The payload to send MUST
+    contain all the player events in a single frame, grouped in a
+    PLAYER_EVENT_LIST. A PLAYER_EVENT_LIST is a succession of
+    PLAYER_EVENT. A PLAYER_EVENT is a succession of 3 numbers representing
+    the player ID, the event type and the event value. Each one of these
+    numbers MUST be coded on 4 bytes. Thus, a PLAYER_EVENT MUST be 12 bytes
+    long, and a PLAYER_EVENT_LIST of (n) PLAYER_EVENT MUST be (n * 12)
+    bytes long. The order of the PLAYER_EVENT elements in PLAYER_EVENT_LIST
+    MUST be the final order of processing (in the game, every PLAYER_EVENT
+    will be processed in the order of the PLAYER_EVENT_LIST).
+
+    The server MUST NOT respond to the client when a payload has been
+    received.
+
+Engels, et al.                  Best Current Practice                    [Page 3]

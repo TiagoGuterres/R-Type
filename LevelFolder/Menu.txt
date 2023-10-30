@@ -1,0 +1,82 @@
+Entity
+Position
+400 500
+Size
+174 64
+SpriteOn
+singleplayer.png singleplayer_on.png
+Scale
+2 2
+Clickable
+true
+Layer
+1
+
+Entity
+Position
+900 500
+Size
+174 64
+SpriteOn
+multiplayer.png multiplayer_on.png
+Scale
+2 2
+Clickable
+true
+Layer
+1
+
+Entity
+Position
+500 100
+Size
+326 119
+Sprite
+logo.png
+Scale
+2 2
+Layer
+1
+
+Entity
+Position
+3084 0
+Size
+1920 1080
+Sprite
+background.png
+Scale
+2 2
+Layer
+0
+isBackground
+1
+
+Entity
+Position
+1920 0
+Size
+1920 1080
+Sprite
+background.png
+Scale
+2 2
+Layer
+0
+isBackground
+1
+
+Entity
+Position
+0 0
+Size
+1920 1080
+Sprite
+background.png
+Scale
+2 2
+Layer
+0
+isBackground
+1
+

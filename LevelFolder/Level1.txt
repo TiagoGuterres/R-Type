@@ -1,0 +1,181 @@
+Entity
+Position
+10 500
+Size
+48 65
+Playable
+true
+Sprite
+player.png
+Scale
+3 3
+Health
+2
+Layer
+2
+Power
+1
+
+
+
+Entity
+Enemy
+true
+Position
+500 500
+Size
+31 36
+Sprite
+enemy1.png
+Scale
+2 2
+Health
+3
+Layer
+2
+Pattern
+top_bot
+Speed
+1 1
+Power
+1
+
+
+
+Entity
+Enemy
+true
+Position
+1000 200
+Size
+31 36
+Sprite
+enemy1.png
+Scale
+2 2
+Health
+3
+Layer
+2
+Pattern
+bot
+Speed
+0.5 0.5
+Power
+1
+
+
+
+Entity
+Enemy
+true
+Position
+1000 800
+Size
+31 36
+Sprite
+enemy1.png
+Scale
+2 2
+Health
+3
+Layer
+2
+Pattern
+left
+Speed
+1 1
+Power
+1
+
+Entity
+Enemy
+true
+Position
+400 800
+Size
+31 36
+Sprite
+enemy1.png
+Scale
+2 2
+Health
+3
+Layer
+2
+Pattern
+left
+Speed
+1 1
+Power
+1
+
+Entity
+Position
+3084 0
+Size
+1920 1080
+Sprite
+background.png
+Scale
+2 2
+Layer
+0
+isBackground
+1
+
+Entity
+Position
+1920 0
+Size
+1920 1080
+Sprite
+background.png
+Scale
+2 2
+Layer
+0
+isBackground
+1
+
+Entity
+Position
+0 0
+Size
+1920 1080
+Sprite
+background.png
+Scale
+2 2
+Layer
+0
+isBackground
+1
+
+Entity
+Position
+1200 900
+Sprite
+wall.png
+Size
+200 80
+Scale
+1 1
+Layer
+1
+Orientation
+0
+
+Entity
+Position
+1000 500
+Sprite
+wall.png
+Size
+80 200
+Scale
+1 1
+Layer
+1
+Orientation
+1
