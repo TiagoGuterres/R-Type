@@ -57,5 +57,5 @@ target_link_libraries(r-type_server sfml-graphics sfml-window sfml-system sfml-n
 target_link_libraries(r-type_client sfml-graphics sfml-window sfml-system sfml-network sfml-audio)
 
 # Link thread
-target_link_libraries(r-type_server pthread)
-target_link_libraries(r-type_client pthread)
+# target_link_libraries(r-type_server pthread)
+# target_link_libraries(r-type_client pthread)
